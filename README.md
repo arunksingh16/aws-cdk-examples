@@ -1,7 +1,7 @@
 # aws-cdk
 Defining AWS resources in your CDK app is exactly like defining any other construct. You create an instance of the construct class, pass in the scope as the first argument, the logical ID of the construct, and a set of configuration properties (props). 
 - `cdk app` is a special root construct
-- cdk is idempotent (check resource hash in cfn using same app id or resource name, it will always produce the same.)
+- `cdk` is `idempotent` (check resource hash in cfn using same app id or resource name, it will always produce the same.)
 
 ### cdk 2
 - Massive improvement
@@ -75,7 +75,7 @@ npx cdk synth --profile my-profile my-stack
 - `cdk synth` generated the cfn template by traversing the app tree. It invokes the synthesize method on all constructs. It also generates unique ID for cfn.
   
 ### Assets
-- file bundled with cdk app. Like lambda functions. How these assests get deployed? The ans is: `cdk bootstrap` deploys a `CDKToolkit` cloudformation stack which will create s3 bucket to store assets and cfn templates. 
+- file bundled with cdk app. Like lambda functions. How these assests get deployed? The ans is: `cdk bootstrap` deploys a `CDKToolkit` cloudformation stack which will create s3 bucket to store assets and cfn templates. `cdk bootstrap` start placing all items in `cdk.out` folder. 
 
 ### Best Practices 
 - using Parameters in our CDK applications is not recommended from the AWS team.
