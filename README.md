@@ -1,5 +1,16 @@
 # aws-cdk
 Defining AWS resources in your CDK app is exactly like defining any other construct. You create an instance of the construct class, pass in the scope as the first argument, the logical ID of the construct, and a set of configuration properties (props). 
+- `cdk app` is a special root construct
+
+### cdk 2
+- Massive improvement
+- 1 npm library to install 
+
+### CDK CONSTRUCTS
+- LEVEL 0 - BASIC RES
+- LEVEL 1 - CFN RES 
+- LEVEL 2 - UPGRADED L1 CONSTRUCTS, INCLUDE HELPER METHODS AND DEFAULTS
+- LEVEL 4 - COMBINANTION OF CONSTRUCT
 
 ### Terms
 - A `construct` represents a "cloud component" and encapsulates everything AWS CloudFormation needs to create the component. A construct can represent a single AWS resource, such as an Amazon Simple Storage Service (Amazon S3) bucket, or it can be a higher-level abstraction consisting of multiple AWS related resources. https://docs.aws.amazon.com/cdk/v2/guide/constructs.html
@@ -61,3 +72,11 @@ npx cdk synth --profile my-profile my-stack
 ### Best Practices 
 - using Parameters in our CDK applications is not recommended from the AWS team.
 - CDK team recommend using environment variables and context, which are resolved at synthesis time and can be used in our CDK code to conditionally provision / update resources.
+
+  ### Resources
+  - https://www.cdkday.com/
+  - https://cdk.dev/
+  - https://cdkpatterns.com/
+  - https://garbe.io/blog/2019/09/11/hey-cdk-how-to-migrate/
+  - https://github.com/kolomied/awesome-cdk
+  - https://constructs.dev/
