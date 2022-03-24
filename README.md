@@ -80,6 +80,8 @@ npx cdk synth --profile my-profile my-stack
 ### Best Practices 
 - using Parameters in our CDK applications is not recommended from the AWS team.
 - CDK team recommend using environment variables and context, which are resolved at synthesis time and can be used in our CDK code to conditionally provision / update resources.
+- keep versions of all cdk components same
+- cdk workflow: init ->> bootstrap ->> synth ->> deploy
 
   ### Resources
   - https://www.cdkday.com/
