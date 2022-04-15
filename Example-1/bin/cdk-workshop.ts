@@ -7,7 +7,8 @@ import { NestedStack, Stack, Tag, Tags } from 'aws-cdk-lib';
 // Amazon CDK articulates around three concepts : an Application, a Stack and Constructs. https://medium.com/swlh/deploy-your-auto-scaling-stack-with-aws-cdk-abae64f8e6b6
 // app is execution, stack is unit being build ,constructs is building blocks 
 
-//Update the CdkAppStack class instantiation 
+// Each Stack instance in your AWS CDK app is explicitly or implicitly associated with an environment (env). 
+// An environment is the target AWS account and region into which the stack is intended to be deployed.
 const envEUTRN  = { account: 'XXXXX', region: 'eu-west-1' };
 const envUSATRN = { account: 'XXXXX', region: 'us-west-2'};
 
