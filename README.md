@@ -76,7 +76,7 @@ npx cdk synth --profile my-profile my-stack
   
 ### Synthesis
 - `cdk synth` generated the cfn template by traversing the app tree. It invokes the synthesize method on all constructs. It also generates unique ID for cfn.
-  
+
 ### Assets
 - file bundled with cdk app. Like lambda functions. How these assests get deployed? The ans is: `cdk bootstrap` deploys a `CDKToolkit` cloudformation stack which will create s3 bucket to store assets and cfn templates. `cdk bootstrap` start placing all items in `cdk.out` folder. 
 
