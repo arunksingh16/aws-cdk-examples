@@ -1,11 +1,14 @@
-# aws-cdk
+# AWS CDK
 Defining AWS resources in your CDK app is exactly like defining any other construct. You create an instance of the construct class, pass in the scope as the first argument, the logical ID of the construct, and a set of configuration properties (props). 
 - `cdk app` is a special root construct
 - `cdk` is `idempotent` (check resource hash in cfn using same app id or resource name, it will always produce the same.)
 
-### cdk 2
+### CDK 2.x
 - Massive improvement
-- 1 npm library to install. CDK 1 had indivisual library for each module. 
+- 1 npm library to install. CDK 1 had indivisual library for each module. Starting in v2, all of the AWS Construct Library comes into a single package, called `aws-cdk-lib`. You get access to all the AWS CDK constructs by installing this package, and third-party construct libraries only need to take a dependency on this package as well.
+- In CDK 2.x AWS has extracted the constructs programming model into a separate library, called `constructs`
+
+We also extracted the constructs programming model into a separate library, called constructs. 
 
 ### CDK CONSTRUCTS
 - LEVEL 0 - BASIC RES
