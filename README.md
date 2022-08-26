@@ -73,6 +73,17 @@ npx cdk synth --profile my-profile my-stack
 - `cdk synth`
 - `cdk deploy --outputs-file ./`
 - `cdk doctor`
+
+### Specifying context values
+- Use the --context or -c option to pass runtime context values to your CDK app.
+```
+# specify a single context value
+cdk synth --context key=value MyStack
+
+# specify multiple context values (any number)
+cdk synth --context key1=value1 --context key2=value2 MyStack
+
+```
   
 ### Synthesis
 - `cdk synth` generated the cfn template by traversing the app tree. It invokes the synthesize method on all constructs. It also generates unique ID for cfn.
