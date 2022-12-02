@@ -14,3 +14,9 @@ keep track of feature flags. Feature flags provide a way to opt in or out of new
 
 - Using context at the App Level
 - Context Managed by CDK
+- Setting Context using the CDK CLI
+```
+npx aws-cdk synth \
+  --context bucketName=myBucket \
+  --context region=us-east-1
+```
