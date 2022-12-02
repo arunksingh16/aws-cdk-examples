@@ -11,3 +11,6 @@ The CDK library uses context to:
 
 cache information about the deployment environment - i.e. Availability zones
 keep track of feature flags. Feature flags provide a way to opt in or out of new functionality that introduces breaking changes, outside of a major CDK version release.
+
+- Using context at the App Level
+- Context Managed by CDK
