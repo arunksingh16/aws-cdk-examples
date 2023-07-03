@@ -105,3 +105,4 @@ cdk synth --context key1=value1 --context key2=value2 MyStack
   - https://github.com/kolomied/awesome-cdk
   - https://constructs.dev/
   - https://docs.aws.amazon.com/solutions/latest/constructs/walkthrough-part-1.html
+  - https://loige.co/
