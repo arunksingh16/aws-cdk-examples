@@ -88,7 +88,7 @@ cdk synth --context key1=value1 --context key2=value2 MyStack
 ### Synthesis
 - `cdk synth` generated the cfn template by traversing the app tree. It invokes the synthesize method on all constructs. It also generates unique ID for cfn.
 
-### Assets
+### Assets
 - file bundled with cdk app. Like lambda functions. How these assests get deployed? The ans is: `cdk bootstrap` deploys a `CDKToolkit` cloudformation stack which will create s3 bucket to store assets and cfn templates. `cdk bootstrap` start placing all items in `cdk.out` folder. 
 
 ### Best Practices 
@@ -106,3 +106,4 @@ cdk synth --context key1=value1 --context key2=value2 MyStack
   - https://constructs.dev/
   - https://docs.aws.amazon.com/solutions/latest/constructs/walkthrough-part-1.html
   - https://loige.co/
+  - https://github.com/cloudcomponents/cdk-constructs/tree/master/examples
