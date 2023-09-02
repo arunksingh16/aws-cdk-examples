@@ -27,7 +27,7 @@ We also extracted the constructs programming model into a separate library, call
 
 every constructs receive the same 3 parameters:
 
-- The scope parameter specifies the parent construct within which the child construct is initialized. In JavaScript we use the this keyword, in Python self, etc.
+- The scope parameter specifies the parent construct within which the child construct is initialized. In TS/JavaScript we use the this keyword, in Python self, because it represents the current scope in which you are defining the construct.
 
 - The id parameter - an identifier that must be unique within the scope. The combination of CDK identifiers for a resource builds the CloudFormation Logical ID of the resource. I've written an article - What is an identifier in AWS CDK if you want to read more.
 
@@ -107,3 +107,4 @@ cdk synth --context key1=value1 --context key2=value2 MyStack
   - https://docs.aws.amazon.com/solutions/latest/constructs/walkthrough-part-1.html
   - https://loige.co/
   - https://github.com/cloudcomponents/cdk-constructs/tree/master/examples
+  - https://blog.phillipninan.com/a-no-nonsense-guide-to-aws-cloud-development-kit-cdk
