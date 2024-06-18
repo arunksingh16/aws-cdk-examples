@@ -4,3 +4,4 @@ import { ApiGatewayStack } from '../lib/api_gateway-stack';
 
 const app = new cdk.App();
 new ApiGatewayStack(app, 'test');
+cdk.Tags.of(app).add('project', 'Arun-Poc');
