@@ -6,8 +6,14 @@ from base64 import b64encode, b64decode
 from botocore.exceptions import ClientError
 import os
 import time
+from flask_cors import CORS
 
 app = Flask(__name__)
+# Enable CORS for specific routes
+CORS(app, resources={r"/*": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['CORS_ALLOW_HEADERS'] = '*'
+app.config['CORS_ORIGINS'] = '*'
 
 # Get environment variables
 KEY_ID = os.environ.get('KMS_KEY_ID')
@@ -23,6 +29,7 @@ def check_connection_and_region():
     Checks if a connection to DynamoDB is successful and prints the region.
     """
     try:
+        # Attempt to list all tables (doesn't create any tables)
         dynamodb_resource.tables.all()
         print("Connection to DynamoDB successful!")
     except ClientError as e:
@@ -61,6 +68,7 @@ def encrypt():
                 'ttl': ttl_timestamp  # TTL attribute
             }
         )
+
         return jsonify({'message': 'Data encrypted and stored successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -76,6 +84,7 @@ def decrypt():
                 'id': id_value
             }
         )
+
         if 'Item' not in response:
             return jsonify({'error': 'Item not found'}), 404
 
@@ -97,7 +106,7 @@ def decrypt():
 
 @app.route('/health', methods=['GET'])
 def health():
-    return jsonify({'message': 'Health is fine'}), 200
+    return jsonify({'message': 'Healthy'}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8888)
