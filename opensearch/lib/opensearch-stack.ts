@@ -11,6 +11,8 @@ export class OpensearchStack extends cdk.Stack {
 
     const vpc = new ec2.Vpc(this, "Vpc", {
       maxAzs: 2,
+      createInternetGateway: true,
+      
     });
 
     const securityGroup = new ec2.SecurityGroup(this, 'SecurityGroup', {
@@ -31,10 +33,12 @@ export class OpensearchStack extends cdk.Stack {
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       securityGroup,
       keyName: 'opensearch',
-      vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS },
+      vpcSubnets: { subnetType: ec2.SubnetType.PUBLIC },
+      associatePublicIpAddress: true
       });
 
     linuxInstance.role.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonOpenSearchServiceFullAccess'));
+
 
     const esSecurityGroup = new ec2.SecurityGroup(this, 'EsSecurityGroup', {
       vpc,
@@ -47,11 +51,11 @@ export class OpensearchStack extends cdk.Stack {
 
     // OpenSearch domain
     const domain = new opensearch.Domain(this, "Domain", {
-      domainName: "opensearch-poc",
       vpc,
       vpcSubnets: [
         { subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS },
       ],
+      securityGroups: [esSecurityGroup],
       version: opensearch.EngineVersion.OPENSEARCH_2_5,
       tlsSecurityPolicy: opensearch.TLSSecurityPolicy.TLS_1_2,
       enableVersionUpgrade: true,
@@ -61,11 +65,20 @@ export class OpensearchStack extends cdk.Stack {
       },
       capacity: {
         dataNodeInstanceType: "t3.small.search",
-        dataNodes: 1,
+        dataNodes: 2,
         multiAzWithStandbyEnabled: false,
       },
+      fineGrainedAccessControl: {
+        masterUserName: 'admin',
+        masterUserPassword: SecretValue.plainText('<your password>'),
+      },
+      nodeToNodeEncryption: true,
+      encryptionAtRest: {
+        enabled: true,
+      },
+      enforceHttps: true,
     });
-    
+    domain.node.addDependency(linuxInstance);
     const cfndomain = domain.node.tryFindChild('Resource') as opensearch.CfnDomain
 
     const selectedSubnetIds = vpc.selectSubnets({ subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS }).subnetIds
@@ -84,7 +97,6 @@ export class OpensearchStack extends cdk.Stack {
     new cdk.CfnOutput(this, "OpenSearchDomainHost", {
       value: domain.domainEndpoint,
     });
-
 
   }
 }
