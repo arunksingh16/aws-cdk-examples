@@ -2,7 +2,7 @@
 
 Creating proxy tunnel
 ```
-ssh -fN -L 9200:<domainURL>:443 ec2-user@<bastion>
+ssh -fN -L 9200:xxxx.eu-west-1.es.amazonaws.com:443 -i "key.pem" ec2-user@3.250.235.66
 ```
 
 
